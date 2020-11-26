@@ -1,5 +1,6 @@
 import 'package:cae_app/base/base_state.dart';
 import 'package:cae_app/view/home/home_item.dart';
+import 'package:cae_app/view/room/room_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../app_state.dart';
@@ -11,7 +12,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends BaseState<HomePage> {
-  void logout() {
+  void _openRoom() {
+    Navigator.pop(context);
+    Navigator.push(
+        context, new MaterialPageRoute(builder: (context) => RoomPage()));
+  }
+
+  void _logout() {
     Navigator.pop(context);
     super.onLogout();
   }
@@ -36,7 +43,7 @@ class _HomePageState extends BaseState<HomePage> {
             ),
           ),
           ListTile(
-            onTap: () => Navigator.pop(context),
+            onTap: _openRoom,
             title: Text('Salas'),
             trailing: Icon(
               Icons.class_,
@@ -60,7 +67,7 @@ class _HomePageState extends BaseState<HomePage> {
           //   ),
           // ),
           ListTile(
-            onTap: logout,
+            onTap: _logout,
             title: Text('Sair'),
             trailing: Icon(
               Icons.arrow_back,

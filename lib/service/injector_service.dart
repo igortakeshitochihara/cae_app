@@ -1,4 +1,7 @@
+import 'package:cae_app/service/room_service.dart';
 import 'package:cae_app/service/user_service.dart';
+
+import 'key_service.dart';
 
 class Injector {
   //singleton
@@ -17,5 +20,13 @@ class Injector {
 
   UserService get userService {
     return new UserService(_token);
+  }
+
+  RoomService get roomService {
+    return new RoomService(_token);
+  }
+
+  KeyService get keyService {
+    return new KeyService(_token);
   }
 }
