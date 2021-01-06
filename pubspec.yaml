@@ -57,6 +57,9 @@ flutter:
   assets:
     - assets/icon/key.png
     - assets/icon/class_room.png
+    - assets/icon/alert/success.png
+    - assets/icon/alert/error.png
+    - assets/icon/alert/warning.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

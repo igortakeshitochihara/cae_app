@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'key.dart';
+part of 'key_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Key _$KeyFromJson(Map<String, dynamic> json) {
-  return Key(
+KeyModel _$KeyModelFromJson(Map<String, dynamic> json) {
+  return KeyModel(
     name: json['name'] as String,
     hash: json['hash'] as String,
     availability: json['availability'] as String,
@@ -20,7 +20,7 @@ Key _$KeyFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$KeyToJson(Key instance) => <String, dynamic>{
+Map<String, dynamic> _$KeyModelToJson(KeyModel instance) => <String, dynamic>{
       'name': instance.name,
       'hash': instance.hash,
       'availability': instance.availability,

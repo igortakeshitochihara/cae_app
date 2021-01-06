@@ -64,6 +64,7 @@ class _RegisterPageState extends State<RegisterPage> {
       FocusScope.of(context).requestFocus(_confirmPasswordFocus);
       return;
     }
+    type = 'teacher';
     widget.listener.onRegister(_name.text, _email.text, _password.text, type);
   }
 

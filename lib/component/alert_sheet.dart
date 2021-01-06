@@ -9,15 +9,14 @@ class AlertSheet extends StatelessWidget {
   AlertSheet({this.status, this.message});
 
   icon(String status) {
-    // switch (status) {
-    //   case 'warning':
-    //     return AssetImage('assets/img/alert/warning.png');
-    //   case 'error':
-    //     return AssetImage('assets/img/alert/error.png');
-    //   default:
-    //     return AssetImage('assets/img/alert/success.png');
-    // }
-    return AssetImage('assets/icon/coin.png');
+    switch (status) {
+      case 'warning':
+        return AssetImage('assets/icon/alert/warning.png');
+      case 'error':
+        return AssetImage('assets/icon/alert/error.png');
+      default:
+        return AssetImage('assets/icon/alert/success.png');
+    }
   }
 
   colorButton(String status) {
@@ -57,7 +56,7 @@ class AlertSheet extends StatelessWidget {
               message,
               textAlign: TextAlign.center,
               style: TextStyle(
-                  color: AppColors.colorWhite,
+                  color: AppColors.colorBlack,
                   fontSize: 18.0,
                   fontWeight: FontWeight.w600),
             ),

@@ -1,14 +1,13 @@
 import 'package:cae_app/base/base_presenter.dart';
-import 'package:cae_app/model/key_model.dart';
 import 'package:cae_app/service/injector_service.dart';
 import 'package:cae_app/service/key_service.dart';
-import 'package:cae_app/view/home/home_view.dart';
+import 'package:cae_app/view/home_teacher/home_teacher_view.dart';
 
-class HomePresenter extends BasePresenter {
-  HomeView _view;
+class HomeTeacherPresenter extends BasePresenter {
+  HomeTeacherView _view;
   KeyService _service;
 
-  HomePresenter(this._view) {
+  HomeTeacherPresenter(this._view) {
     super.view = view;
     _service = new Injector().keyService;
   }

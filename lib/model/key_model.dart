@@ -4,10 +4,10 @@ import 'package:cae_app/model/borrowing.dart';
 import 'package:cae_app/model/room.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'key.g.dart';
+part 'key_model.g.dart';
 
 @JsonSerializable()
-class Key {
+class KeyModel {
   String name;
   String hash;
   String availability;
@@ -16,7 +16,7 @@ class Key {
 
   Borrowing borrowing;
 
-  Key({
+  KeyModel({
     this.name,
     this.hash,
     this.availability,
@@ -24,9 +24,9 @@ class Key {
     this.borrowing
   });
 
-  factory Key.fromJson(Map<String, dynamic> json) => _$KeyFromJson(json);
+  factory KeyModel.fromJson(Map<String, dynamic> json) => _$KeyModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$KeyToJson(this);
+  Map<String, dynamic> toJson() => _$KeyModelToJson(this);
 
   @override
   String toString() {

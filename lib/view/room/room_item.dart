@@ -1,12 +1,25 @@
+import 'package:cae_app/model/room.dart';
+import 'package:cae_app/view/room/room_detail_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../theme.dart';
 
 class RoomItem extends StatelessWidget {
+  final Room room;
+
+  RoomItem({this.room});
+
+  void _openDetail(BuildContext context) {
+    Navigator.push(
+        context,
+        new MaterialPageRoute(
+            builder: (context) => RoomDetailPage(room: room)));
+  }
+
   @override
   Widget build(BuildContext context) {
     return FlatButton(
-      onPressed: () {},
+      onPressed: () => _openDetail(context),
       padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
       child: Card(
         margin: const EdgeInsets.all(0.0),
@@ -44,7 +57,7 @@ class RoomItem extends StatelessWidget {
               ),
               SizedBox(height: 10.0),
               Text(
-                'Sala 1',
+                room.name,
                 style: TextStyle(
                     color: AppColors.colorBlack,
                     fontSize: 14.0,

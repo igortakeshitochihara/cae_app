@@ -7,6 +7,8 @@ part 'borrowing.g.dart';
 
 @JsonSerializable()
 class Borrowing {
+  String hash;
+  String status;
   @JsonKey(name: 'borrowing_time')
   DateTime borrowingTime;
   @JsonKey(name: 'return_time')
@@ -15,7 +17,10 @@ class Borrowing {
   User user;
 
   Borrowing({
+    this.hash,
+    this.status,
     this.borrowingTime,
+    this.returnTime,
     this.user,
   });
 

@@ -1,13 +1,13 @@
 import 'package:cae_app/base/base_http.dart';
-import 'package:cae_app/model/key.dart';
+import 'package:cae_app/model/key_model.dart';
 import 'package:cae_app/model/response_data.dart';
 
 class KeyService extends HttpBase {
   KeyService(String token) : super(token);
 
-  Future<List<Key>> list() async {
+  Future<List<KeyModel>> list() async {
     return await get('/key')
-        .then((data) => (data as List).map((i) => new Key.fromJson(i)).toList());
+        .then((data) => (data as List).map((i) => new KeyModel.fromJson(i)).toList());
   }
 
   Future<ResponseData> add(dynamic model) async {

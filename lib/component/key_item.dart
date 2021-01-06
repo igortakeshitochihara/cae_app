@@ -1,8 +1,17 @@
+import 'package:cae_app/model/key_model.dart';
+import 'package:cae_app/view/key/key_detail_page.dart';
 import 'package:flutter/material.dart';
 
-import '../../theme.dart';
+import '../theme.dart';
 
-class HomeItem extends StatelessWidget {
+class KeyItem extends StatelessWidget {
+  final KeyModel keyModel;
+  final String typeUser;
+  final KeyItemListener listener;
+
+  KeyItem({this.keyModel, this.typeUser, this.listener});
+
+
   Widget getAvailabilityLayout(String availability) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
@@ -32,7 +41,7 @@ class HomeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlatButton(
-      onPressed: () {},
+      onPressed: () => listener.onClickDetail(keyModel, typeUser),
       padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
       child: Card(
         margin: const EdgeInsets.all(0.0),
@@ -70,7 +79,7 @@ class HomeItem extends StatelessWidget {
               ),
               SizedBox(height: 10.0),
               Text(
-                'Chave 1 - Sala 1',
+                keyModel.name + ' - ' + keyModel.room.name,
                 style: TextStyle(
                     color: AppColors.colorBlack,
                     fontSize: 14.0,
@@ -79,11 +88,15 @@ class HomeItem extends StatelessWidget {
                 maxLines: 1,
               ),
               SizedBox(height: 10.0),
-              getAvailabilityLayout('available')
+              getAvailabilityLayout(keyModel.availability)
             ],
           ),
         ),
       ),
     );
   }
+}
+
+abstract class KeyItemListener {
+  void onClickDetail(KeyModel keyModel, String typeUser);
 }
