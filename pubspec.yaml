@@ -57,6 +57,7 @@ flutter:
   assets:
     - assets/icon/key.png
     - assets/icon/class_room.png
+    - assets/icon/user.png
     - assets/icon/alert/success.png
     - assets/icon/alert/error.png
     - assets/icon/alert/warning.png

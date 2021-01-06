@@ -20,10 +20,18 @@ class RoomDetailPresenter extends BasePresenter {
             super.onError(error, (message) => _view.onRoomError(message)));
   }
 
+  void update(String name, String hash) {
+    _service
+        .update('{"name": "$name", "hash": "$hash"}')
+        .then((data) => _view.onRoomUpdateSuccess(data.message))
+        .catchError((error) =>
+        super.onError(error, (message) => _view.onRoomError(message)));
+  }
+
   void remove(String hash) {
     _service
         .remove(hash)
-        .then((data) => _view.onRoomAddSuccess(data.message))
+        .then((data) => _view.onRoomRemoveSuccess(data.message))
         .catchError((error) =>
         super.onError(error, (message) => _view.onRoomError(message)));
   }

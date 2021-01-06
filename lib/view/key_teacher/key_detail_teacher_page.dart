@@ -81,12 +81,13 @@ class _KeyDetailTeacherPageState extends State<KeyDetailTeacherPage> implements 
                   shape: BoxShape.circle,
                 ),
                 child: Container(
-                  height: 70.0,
-                  width: 70.0,
+                  height: 50.0,
+                  width: 50.0,
+                  margin: const EdgeInsets.all(5.0),
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.contain,
-                      image: AssetImage('assets/icon/key.png'),
+                      image: AssetImage('assets/icon/user.png'),
                     ),
                   ),
                 ),

@@ -92,13 +92,15 @@ class _HomeTeacherPageState extends BaseState<HomeTeacherPage>
           ),
           centerTitle: true,
           elevation: 0.0,
-          leading: FlatButton(
-            onPressed: _logout,
-            child: Text(
-              'Sair',
-              style: TextStyle(color: AppColors.colorRed),
-            ),
-          ),
+          actions: [
+            FlatButton(
+              onPressed: _logout,
+              child: Text(
+                'Sair',
+                style: TextStyle(color: AppColors.colorRed, fontSize: 16.0),
+              ),
+            )
+          ],
         ),
         body: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {

@@ -58,7 +58,7 @@ class _HomePageState extends BaseState<HomePage> implements HomeView, KeyItemLis
             ),
             currentAccountPicture: CircleAvatar(
               backgroundColor: AppColors.colorPrimary,
-              // backgroundImage: AssetImage('assets/img/no_user.png'),
+              backgroundImage: AssetImage('assets/icon/user.png'),
             ),
           ),
           ListTile(

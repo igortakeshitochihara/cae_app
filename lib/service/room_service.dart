@@ -15,6 +15,11 @@ class RoomService extends HttpBase {
         .then((data) => ResponseData.fromJson(data));
   }
 
+  Future<ResponseData> update(dynamic model) async {
+    return await put('/room', model.toString())
+        .then((data) => ResponseData.fromJson(data));
+  }
+
   Future<ResponseData> remove(String hash) async {
     return await delete('/room/$hash')
         .then((data) => ResponseData.fromJson(data));

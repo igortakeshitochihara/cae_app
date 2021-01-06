@@ -15,7 +15,7 @@ Future main() async {
         ? (AppState().user.type == 'admin'
             ? new HomePage()
             : new HomeTeacherPage())
-        : new InitialPage();
+        : new InitialMainPage();
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
         .then((_) {
       runApp(CaeApp(defaultHome: _defaultHome));

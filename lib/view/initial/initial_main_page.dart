@@ -1,7 +1,9 @@
 import 'package:cae_app/base/util.dart';
 import 'package:cae_app/model/auth.dart';
 import 'package:cae_app/presenter/initial_main_presenter.dart';
+import 'package:cae_app/theme.dart';
 import 'package:cae_app/view/home/home_page.dart';
+import 'package:cae_app/view/home_teacher/home_teacher_page.dart';
 import 'package:cae_app/view/initial/initial_main_view.dart';
 import 'package:cae_app/view/login/login_page.dart';
 import 'package:cae_app/view/register/register_page.dart';
@@ -45,9 +47,12 @@ class _InitialMainPageState extends State<InitialMainPage>
     _pageController.jumpToPage(page);
   }
 
-  void _openHome() {
+  void _openHome(String typeUser) {
     Navigator.pushReplacement(
-        context, new MaterialPageRoute(builder: (context) => HomePage()));
+        context,
+        new MaterialPageRoute(
+            builder: (context) =>
+                typeUser == 'admin' ? HomePage() : HomeTeacherPage()));
   }
 
   @override
@@ -100,7 +105,7 @@ class _InitialMainPageState extends State<InitialMainPage>
     AppState().user = auth.user;
     AppState().token = auth.token;
     AppState().saveUser();
-    _openHome();
+    _openHome(auth.user.type);
   }
 
   @override
@@ -109,6 +114,6 @@ class _InitialMainPageState extends State<InitialMainPage>
     AppState().user = auth.user;
     AppState().token = auth.token;
     AppState().saveUser();
-    _openHome();
+    _openHome(auth.user.type);
   }
 }

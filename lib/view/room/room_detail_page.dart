@@ -38,14 +38,16 @@ class _RoomDetailPageState extends State<RoomDetailPage>
     super.dispose();
   }
 
-  void _add() {
+  void _save() {
     if (_name.text.length == 0) {
       Util.alert(context, 'warning', 'Preencha o nome');
       FocusScope.of(context).requestFocus(_nameFocus);
       return;
     }
     Util.showLoading(context);
-    _presenter.add(_name.text);
+    widget.room == null
+        ? _presenter.add(_name.text)
+        : _presenter.update(_name.text, widget.room.hash);
   }
 
   void _remove() {
@@ -80,12 +82,12 @@ class _RoomDetailPageState extends State<RoomDetailPage>
             decoration: const InputDecoration(labelText: 'Nome'),
             keyboardType: TextInputType.text,
             onSubmitted: (String value) {
-              _add();
+              _save();
             },
           ),
           SizedBox(height: 40.0),
           FlatButton(
-            onPressed: _add,
+            onPressed: _save,
             padding: const EdgeInsets.all(0.0),
             child: Container(
               padding:
@@ -159,6 +161,13 @@ class _RoomDetailPageState extends State<RoomDetailPage>
 
   @override
   void onRoomRemoveSuccess(String message) {
+    Util.closeLoading(context);
+    Navigator.pop(context, true);
+    Util.alert(context, 'success', message);
+  }
+
+  @override
+  void onRoomUpdateSuccess(String message) {
     Util.closeLoading(context);
     Navigator.pop(context, true);
     Util.alert(context, 'success', message);

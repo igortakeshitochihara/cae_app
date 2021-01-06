@@ -23,6 +23,22 @@ class KeyDetailPresenter extends BasePresenter {
             super.onError(error, (message) => _view.onKeyError(message)));
   }
 
+  void update(String name, String hash, String roomId) {
+    _service
+        .add('{"name": "$name", "room_id": "$roomId", "hash": "$hash"}')
+        .then((data) => _view.onKeyUpdateSuccess(data.message))
+        .catchError((error) =>
+        super.onError(error, (message) => _view.onKeyError(message)));
+  }
+
+  void remove(String hash) {
+    _service
+        .remove(hash)
+        .then((data) => _view.onKeyRemoveSuccess(data.message))
+        .catchError((error) =>
+        super.onError(error, (message) => _view.onKeyError(message)));
+  }
+
   void listRoom() {
     _roomService.list().then((data) => _view.onRoomListSuccess(data)).catchError(
             (error) =>
