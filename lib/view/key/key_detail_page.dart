@@ -92,7 +92,7 @@ class _KeyDetailPageState extends State<KeyDetailPage>
         centerTitle: true,
         elevation: 0.0,
         title: Text(
-          widget.keyModel != null ? widget.keyModel.name : 'Adicionar Sala',
+          widget.keyModel != null ? widget.keyModel.name : 'Adicionar Chave',
           style: TextStyle(color: AppColors.colorBlack),
         ),
         leading: IconButton(

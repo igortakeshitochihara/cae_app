@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
       FocusScope.of(context).requestFocus(_passwordFocus);
       return;
     }
-    widget.listener.onLogin(_email.text, _password.text);
+    widget.listener.onLogin(_email.text.trim(), _password.text.trim());
   }
 
   void _openHome() {

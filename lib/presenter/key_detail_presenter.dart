@@ -25,7 +25,7 @@ class KeyDetailPresenter extends BasePresenter {
 
   void update(String name, String hash, String roomId) {
     _service
-        .add('{"name": "$name", "room_id": "$roomId", "hash": "$hash"}')
+        .update('{"name": "$name", "room_id": "$roomId", "hash": "$hash"}')
         .then((data) => _view.onKeyUpdateSuccess(data.message))
         .catchError((error) =>
         super.onError(error, (message) => _view.onKeyError(message)));
