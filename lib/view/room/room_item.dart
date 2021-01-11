@@ -6,20 +6,15 @@ import '../../theme.dart';
 
 class RoomItem extends StatelessWidget {
   final Room room;
+  final RoomItemListener listener;
 
-  RoomItem({this.room});
-
-  void _openDetail(BuildContext context) {
-    Navigator.push(
-        context,
-        new MaterialPageRoute(
-            builder: (context) => RoomDetailPage(room: room)));
-  }
+  RoomItem({this.room, this.listener});
+  
 
   @override
   Widget build(BuildContext context) {
     return FlatButton(
-      onPressed: () => _openDetail(context),
+      onPressed: () => listener.onClickRoom(room),
       padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
       child: Card(
         margin: const EdgeInsets.all(0.0),
@@ -71,4 +66,8 @@ class RoomItem extends StatelessWidget {
       ),
     );
   }
+}
+
+abstract class RoomItemListener {
+  void onClickRoom(Room room);
 }

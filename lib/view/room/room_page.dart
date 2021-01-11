@@ -13,7 +13,8 @@ class RoomPage extends StatefulWidget {
   _RoomPageState createState() => _RoomPageState();
 }
 
-class _RoomPageState extends State<RoomPage> implements RoomView {
+class _RoomPageState extends State<RoomPage>
+    implements RoomView, RoomItemListener {
   RoomPresenter _presenter;
   bool _isLoading = true;
   List<Room> _listRooms;
@@ -38,7 +39,7 @@ class _RoomPageState extends State<RoomPage> implements RoomView {
   List<Widget> rooms() {
     var items = <Widget>[];
     _listRooms.asMap().forEach((index, Room room) {
-      items.add(RoomItem(room: room));
+      items.add(RoomItem(room: room, listener: this));
     });
     return items;
   }
@@ -50,6 +51,12 @@ class _RoomPageState extends State<RoomPage> implements RoomView {
             builder: (context) => RoomDetailPage(room: null))).then((value) {
       if (value) _onLoadList();
     });
+  }
+
+  Future<Null> _handleRefresh() async {
+    _onLoadList();
+    await new Future.delayed(new Duration(seconds: 1));
+    return null;
   }
 
   @override
@@ -71,7 +78,12 @@ class _RoomPageState extends State<RoomPage> implements RoomView {
       ),
       body: _isLoading
           ? Util.loading()
-          : GridView.count(crossAxisCount: 2, children: rooms()),
+          : RefreshIndicator(
+              color: AppColors.colorPrimary,
+              backgroundColor: AppColors.colorWhite,
+              onRefresh: _handleRefresh,
+              child: GridView.count(crossAxisCount: 2, children: rooms()),
+            ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: new FloatingActionButton(
         onPressed: _onAddRoom,
@@ -95,6 +107,16 @@ class _RoomPageState extends State<RoomPage> implements RoomView {
     setState(() {
       _isLoading = false;
       _listRooms = rooms;
+    });
+  }
+
+  @override
+  void onClickRoom(Room room) {
+    Navigator.push(
+        context,
+        new MaterialPageRoute(
+            builder: (context) => RoomDetailPage(room: room))).then((value) {
+      if (value) _onLoadList();
     });
   }
 }

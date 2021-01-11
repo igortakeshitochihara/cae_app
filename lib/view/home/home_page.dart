@@ -16,7 +16,8 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends BaseState<HomePage> implements HomeView, KeyItemListener {
+class _HomePageState extends BaseState<HomePage>
+    implements HomeView, KeyItemListener {
   HomePresenter _presenter;
   bool _isLoading = true;
   List<KeyModel> _listKeys;
@@ -91,6 +92,12 @@ class _HomePageState extends BaseState<HomePage> implements HomeView, KeyItemLis
     });
   }
 
+  Future<Null> _handleRefresh() async {
+    _onLoadList();
+    await new Future.delayed(new Duration(seconds: 1));
+    return null;
+  }
+
   void _onLoadList() {
     setState(() {
       _isLoading = true;
@@ -123,15 +130,20 @@ class _HomePageState extends BaseState<HomePage> implements HomeView, KeyItemLis
       drawer: _menu(),
       body: _isLoading
           ? Util.loading()
-          : GridView.count(
-              crossAxisCount: 2,
-              children: keys(),
+          : RefreshIndicator(
+              color: AppColors.colorPrimary,
+              backgroundColor: AppColors.colorWhite,
+              onRefresh: _handleRefresh,
+              child: GridView.count(
+                crossAxisCount: 2,
+                children: keys(),
+              ),
             ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: new FloatingActionButton(
         onPressed: _onAddKey,
         backgroundColor: AppColors.colorYellow,
-        tooltip: 'Adicionar sala',
+        tooltip: 'Adicionar chave',
         child: new Icon(Icons.add),
       ),
     );
@@ -157,10 +169,10 @@ class _HomePageState extends BaseState<HomePage> implements HomeView, KeyItemLis
   void onClickDetail(KeyModel keyModel, String typeUser) {
     if (typeUser == 'admin')
       Navigator.push(
-          context,
-          new MaterialPageRoute(
-              builder: (context) =>
-                  KeyDetailPage(keyModel: keyModel))).then((value) {
+              context,
+              new MaterialPageRoute(
+                  builder: (context) => KeyDetailPage(keyModel: keyModel)))
+          .then((value) {
         if (value) _onLoadList();
       });
   }
