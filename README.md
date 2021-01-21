@@ -1,6 +1,8 @@
 # cae_app
 
-A new Flutter application.
+Projeto para organização de chaves de um campus. É um sistema simples desenvolvido utilizando Flutter (Front-End) e Laravel (Back-End).
+
+Project for organizing campus keys. Is a simple system developed using Flutter (Front-End) and Laravel (Back-End).
 
 ## Getting Started
 
